@@ -20,7 +20,7 @@
     static void
 error_callback(lcb_t handle, lcb_error_t error, const char *errinfo)
 {
-    struct cb_bucket_st *bucket = (struct cb_bucket_st *bucket)lcb_get_cookie(handle);
+    struct cb_bucket_st *bucket = (struct cb_bucket_st *)lcb_get_cookie(handle);
 
     lcb_breakout(handle);
     bucket->exception = cb_check_error(error, errinfo, Qnil);
