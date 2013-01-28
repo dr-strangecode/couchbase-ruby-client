@@ -113,7 +113,7 @@ struct cb_bucket_st
 struct cb_http_request_st;
 struct cb_context_st
 {
-    struct cb_bucket_st* bucket;
+    struct cb_bucket_st *bucket;
     int extended;
     VALUE proc;
     VALUE rv;
