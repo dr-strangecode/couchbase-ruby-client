@@ -20,7 +20,7 @@
     static void
 error_callback(lcb_t handle, lcb_error_t error, const char *errinfo)
 {
-    struct cb_bucket_st *bucket = (struct cb_bucket_st *)lcb_get_cookie(handle);
+    struct cb_bucket_st *bucket = (struct cb_bucket_st *bucket)lcb_get_cookie(handle);
 
     lcb_breakout(handle);
     bucket->exception = cb_check_error(error, errinfo, Qnil);
@@ -761,7 +761,7 @@ cb_bucket_hostname_get(VALUE self)
     struct cb_bucket_st *bucket = DATA_PTR(self);
 
     if (bucket->handle) {
-        const char * host = lcb_get_host(bucket->handle);
+        const char *host = lcb_get_host(bucket->handle);
         unsigned long len = RSTRING_LEN(bucket->hostname);
         if (len != strlen(host) || strncmp(RSTRING_PTR(bucket->hostname), host, len) != 0) {
             bucket->hostname = STR_NEW_CSTR(host);
